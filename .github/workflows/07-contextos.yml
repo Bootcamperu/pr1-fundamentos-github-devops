@@ -1,0 +1,13 @@
+name: 07-Contextos usos
+on:
+  push:
+    branches: [ "main" ]
+  workflow_dispatch:
+jobs:
+  info-runner:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Verificar OS y arquitectura
+        run: |
+         echo "Sistema operativo: ${{ runner.os }}"
+         echo "Arquitectura del sistema: ${{ runner.arch }}"

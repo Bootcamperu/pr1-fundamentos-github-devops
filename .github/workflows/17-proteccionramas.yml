@@ -1,0 +1,16 @@
+name: 17 - entornos ramas protegidas 2025
+on:
+  push:
+    branches:
+      - main
+      - release/*
+  workflow_dispatch:
+jobs:
+  entornos:
+    runs-on: ubuntu-latest
+    environment: prod
+    steps:
+      - name: Verificar variable
+        run: echo "${{vars.UNA_VARIABLE}}"
+      - name: Verificar secreto
+        run: echo "${{secrets.UN_SECRETO}}"

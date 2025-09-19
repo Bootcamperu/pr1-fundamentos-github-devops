@@ -1,0 +1,17 @@
+name: 02-Evento Issue - Ejecutando Trigger Interno -502
+# Trigger
+on:
+  push:
+  issues:
+    types:
+    - opened
+#Job
+jobs:
+  hola-mundo:
+    # Runner
+    runs-on: ubuntu-latest
+    # Steps 
+    steps:
+    # Runs a single command using the runners shell
+    - name: Hola Mundo
+      run: echo "Hola Mundo"

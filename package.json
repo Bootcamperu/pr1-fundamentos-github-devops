@@ -1,0 +1,24 @@
+{
+  "name": "pr1-fundamentos-github",
+  "version": "1.0.0",
+  "description": "Evitando que se lance el worflow ",
+  "main": "index.js",
+  "scripts": {
+     "test": "jest --coverage"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Bootcamperu/pr1-fundamentos-github.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/Bootcamperu/pr1-fundamentos-github/issues"
+  },
+  "homepage": "https://github.com/Bootcamperu/pr1-fundamentos-github#readme",
+  "devDependencies": {
+    "jest": "^30.0.5"
+  }
+}

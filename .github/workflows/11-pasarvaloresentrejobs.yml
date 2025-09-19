@@ -1,0 +1,35 @@
+name: 11 - Pasar valores de Entrada y salida entre jobs
+on:
+  workflow_dispatch:
+    inputs:
+      numero-dados:
+        type: choice
+        options:
+          - uno
+          - dos
+        default: dos
+        description: El número de dados
+jobs:
+  tirada-dados:
+    outputs:
+      dado1: ${{ steps.dado1.outputs.dado1 }}
+      dado2: ${{ steps.dado2.outputs.dado2 }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: ¿Cuántos dados?
+        run: echo "Hay ${{inputs.numero-dados}} dados"
+      - name: Generar Dado 1
+        id: dado1
+        run: echo "dado1=$((1 + RANDOM % 6))" >> "$GITHUB_OUTPUT"
+      - name: Generar Dado 2
+        if: ${{ inputs.numero-dados == 'dos' }}  
+        id: dado2
+        run: echo "dado2=$((1 + RANDOM % 6))" >> "$GITHUB_OUTPUT"
+      - name: Escribir Resumen
+        run: |
+         echo "# :game_die: El resultado es:" >> $GITHUB_STEP_SUMMARY
+         echo dado1: ${{steps.dado1.outputs.dado1}} >> $GITHUB_STEP_SUMMARY
+      - name: Escribir Resumen para segundo dado
+        if: ${{ inputs.numero-dados == 'dos' }}
+        run: |
+          echo dado2: ${{steps.dado2.outputs.dado2}} >> $GITHUB_STEP_SUMMARY

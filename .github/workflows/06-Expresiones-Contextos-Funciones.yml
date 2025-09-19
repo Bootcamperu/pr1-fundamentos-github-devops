@@ -1,0 +1,25 @@
+name: 06-Expresiones-Contextos-Funciones - 1
+on:
+  push:
+    branches: [ "main" ]
+  workflow_dispatch:
+jobs:
+  expresiones:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Operadores
+        id: operadores
+        run: echo "${{ 2 > 1 }}"
+      - name: Inspeccionar github
+        id: githubContext
+        run: echo "${{ toJSON(github) }}"
+      - name: Evento y actor
+        id: eventoActor
+        run: |
+         echo "Evento disparador: ${{ github.event_name }}"
+         echo "Lanzado por: ${{ github.actor }}"
+      - name: Filtro de objeto
+        id: stepsContext
+        run: |
+          echo "${{ toJSON(steps) }}"
+          echo "${{ join(steps.*.conclusion) }}"

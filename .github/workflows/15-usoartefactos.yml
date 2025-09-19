@@ -1,0 +1,43 @@
+name: 15 - artefactos - 
+on:
+  push:
+    branches: [ "main" ]
+  workflow_dispatch:
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Asignar versión de node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Instalar dependencias
+        run: npm ci
+      - name: Lanzar pruebas
+        run: npm test
+      - name: Archivar reporte de cobertura
+        uses: actions/upload-artifact@v4
+        with:
+          name: reporte-cobertura
+          path: |
+            coverage/**/index.html
+  resumen:
+    runs-on: ubuntu-latest
+    needs: test
+    steps:
+      - name: Descargar reporte de cobertura
+        uses: actions/download-artifact@v4
+        with:
+          name: reporte-cobertura
+      - name: Mostrar la estructura de los ficheros descargados
+        run: ls -R
+      - name: HTML a Markdown
+        id: html2markdown
+        uses: rknj/html2markdown@b8edf4ce2aa1309ec7228191634df9b4760d4b07
+        with:
+          html-file: "lcov-report/index.html"
+      - name: Escribe resumen
+        run: |
+          echo "# Reporte de cobertura" >> $GITHUB_STEP_SUMMARY
+          cat ${{ steps.html2markdown.outputs.markdown-file }} >> $GITHUB_STEP_SUMMARY
