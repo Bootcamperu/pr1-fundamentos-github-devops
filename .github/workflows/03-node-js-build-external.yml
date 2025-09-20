@@ -1,4 +1,4 @@
-name: 03-Ejecucion-sobre-la-rama-2025
+name: 03-Ejecucion-sobre-la-rama
 on:
   push:
     branches: [ "main" ]
