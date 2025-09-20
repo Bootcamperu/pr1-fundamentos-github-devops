@@ -2,6 +2,8 @@ name: 02-Evento Issue - Ejecutando Trigger Interno -502
 # Trigger
 on:
   push:
+    paths-ignore:
+      - '*.md'
   issues:
     types:
     - opened
