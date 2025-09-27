@@ -1,4 +1,4 @@
-name: 05-Instalar Paquetes
+name: 05-Instalar PaqueteS - Probemos
 on:
   push:
     branches: [ "main" ]
