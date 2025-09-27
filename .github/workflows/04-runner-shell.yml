@@ -1,4 +1,4 @@
-name: 04 - Distintas shells
+name: 04 - Distintas shells - Conociendo Tipo - Devops
 on:
   push:
     branches: [ "main" ]
