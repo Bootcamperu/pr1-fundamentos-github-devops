@@ -25,11 +25,15 @@ jobs:
         if: ${{ inputs.numero-dados == 'dos' }}  
         id: dado2
         run: echo "dado2=$((1 + RANDOM % 6))" >> "$GITHUB_OUTPUT"
+  resumen:
+    runs-on: ubuntu-latest
+    needs: tirada-dados
+    steps:
       - name: Escribir Resumen
         run: |
          echo "# :game_die: El resultado es:" >> $GITHUB_STEP_SUMMARY
-         echo dado1: ${{steps.dado1.outputs.dado1}} >> $GITHUB_STEP_SUMMARY
+         echo dado1: ${{needs.tirada-dados.outputs.dado1}} >> $GITHUB_STEP_SUMMARY
       - name: Escribir Resumen para segundo dado
         if: ${{ inputs.numero-dados == 'dos' }}
         run: |
-          echo dado2: ${{steps.dado2.outputs.dado2}} >> $GITHUB_STEP_SUMMARY
+          echo dado2: ${{needs.tirada-dados.outputs.dado2}} >> $GITHUB_STEP_SUMMARY
