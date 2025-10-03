@@ -1,4 +1,4 @@
-name: 06-Expresiones-Contextos-Funciones - 2025
+name: 06-Expresiones-Contextos-Funciones
 on:
   push:
     branches: [ "main" ]
