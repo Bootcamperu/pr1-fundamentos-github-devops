@@ -18,6 +18,7 @@ jobs:
         run: |
          echo "Evento disparador: ${{ github.event_name }}"
          echo "Lanzado por: ${{ github.actor }}"
+      
       - name: Filtro de objeto
         id: stepsContext
         run: |
